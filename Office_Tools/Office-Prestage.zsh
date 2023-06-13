@@ -68,35 +68,12 @@ else
 fi
 
 # Check for Jamf Passed Variables
-if [[ -z "$4" ]]; then
-    OFFICE_CORE_PKG="https://go.microsoft.com/fwlink/?linkid=525133"
-else
-    OFFICE_CORE_PKG="$4"
-fi
-
-if [[ -z "$5" ]]; then
-    OFFICE_FULL_PKG="https://go.microsoft.com/fwlink/?linkid=2009112"
-else
-    OFFICE_FULL_PKG="$5"
-fi
-if [[ -z "$6" ]]; then
-    TEAMS_PKG="https://go.microsoft.com/fwlink/?linkid=869428"
-else
-    TEAMS_PKG="$6"
-fi
-if [[ -z "$7" ]]; then
-    ONEDRIVE_PKG="https://go.microsoft.com/fwlink/?linkid=823060"
-else
-    ONEDRIVE_PKG="$7"
-fi
-if [[ -z "$8" ]]; then
-    INTUNE_PKG="https://go.microsoft.com/fwlink/?linkid=869655"
-else
-    INTUNE_PKG="$8"
-fi
-
-# Check for what office packages are installed.
-# If none are installed, install the full package
+RUN_LOG "Checking for Jamf Passed Variables"
+OFFICE_CORE_PKG=${4:-"https://go.microsoft.com/fwlink/?linkid=525133"}
+OFFICE_FULL_PKG=${5:="https://go.microsoft.com/fwlink/?linkid=2009112"}
+TEAMS_PKG=${6:="https://go.microsoft.com/fwlink/?linkid=869428"}
+ONEDRIVE_PKG=${7:="https://go.microsoft.com/fwlink/?linkid=823060"}
+INTUNE_PKG=${8:="https://go.microsoft.com/fwlink/?linkid=869655"}
 
 function OFFICE_CHECK() {
     if [[ -z "$1" ]]; then
